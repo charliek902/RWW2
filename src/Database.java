@@ -10,6 +10,9 @@ public class Database {
         if(this.userNamesFull()){
             return false;
         }
+        if(username.length() == 0){
+            return false;
+        }
         int latestIndex = this.insertUserName(username);
         this.insertPassword(latestIndex, password);
         return true;
@@ -19,6 +22,13 @@ public class Database {
         return this.checkUsername(userName) && this.checkPassword(userName, password);
     }
 
+    public Boolean inValidUserName(String userName){
+        return userName.length() == 0;
+    }
+
+    public Boolean inValidPassword(String password){
+        return password.length() == 0;
+    }
 
     private int insertUserName(String userNameAttempt){
         int latestIndex = 0;
@@ -44,7 +54,7 @@ public class Database {
                 currentUserNames++;
             }
         }
-        return currentUserNames == userNamesCapacity;
+        return currentUserNames >= userNamesCapacity;
     }
 
     private Boolean checkUsername(String userNameAttempt){

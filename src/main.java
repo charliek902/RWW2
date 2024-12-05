@@ -1,7 +1,4 @@
-
 import java.util.Scanner;
-
-
 public class main {
 
     public static void main(String[] args) {
@@ -39,19 +36,22 @@ public class main {
                     case("1"):
                         System.out.print("Please create a username ([a-z][A-Z]): ");
                         String userName = reader.nextLine();
-                        while (userName.length() == 0){
+                        while (loginDB.inValidUserName(userName)){
                             System.out.print("Please create a username longer than 0 characters ([a-z][A-Z]): ");
                             userName = reader.nextLine();
                         }
                         System.out.print("Please create a password: ");
                         String password = reader.nextLine();
-                        while (password.length() == 0){
+                        while (loginDB.inValidPassword(password)){
                             System.out.print("Please create a password longer than 0 characters: ");
                             password = reader.nextLine();
                         }
                         System.out.print("Please reenter your password: ");
                         String password2 = reader.nextLine();
-
+                        while (loginDB.inValidPassword(password2)){
+                            System.out.print("Please create a password longer than 0 characters: ");
+                            password2 = reader.nextLine();
+                        }
                         if(!(password.equals(password2))){
                             System.out.println("The passwords did not match");
                         }
@@ -66,13 +66,13 @@ public class main {
                     case("2"):
                         System.out.print("Please enter a username ([a-z][A-Z]): ");
                         String userNameLogin = reader.nextLine();
-                        while (userNameLogin.length() == 0){
+                        while (loginDB.inValidUserName(userNameLogin)){
                             System.out.print("Please enter a username longer than 0 characters ([a-z][A-Z]): ");
                             userNameLogin = reader.nextLine();
                         }
                         System.out.print("Please enter a password: ");
                         String passwordLogin = reader.nextLine();
-                        while (passwordLogin.length() == 0){
+                        while (loginDB.inValidPassword(passwordLogin)){
                             System.out.print("Please enter a password longer than 0 characters: ");
                             passwordLogin = reader.nextLine();
                         }
